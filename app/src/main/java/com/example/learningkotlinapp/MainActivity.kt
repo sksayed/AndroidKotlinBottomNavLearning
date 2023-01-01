@@ -1,6 +1,7 @@
 package com.example.learningkotlinapp
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var _navView: BottomNavigationView
-
+    val TAG = "MainActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //here , ActivityMainBinding is auto generated
@@ -36,8 +37,12 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         _navView.setupWithNavController(navController)
 
+        Log.d(TAG , "i am here at "+Thread.currentThread().name)
         GlobalScope.launch {
-            // i am launching , means creating a couro
+            // i am launching , means creating a coroutine
+            // it will be like inside a thread
+            Log.d(TAG , "i am here at "+Thread.currentThread().name)
+            doNetworkCall()
         }
 
     }
